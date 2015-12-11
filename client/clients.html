@@ -1,0 +1,30 @@
+<!-- client/posts.html -->
+
+<template name="clients">
+  <h1>Add Client</h1>
+    
+    {{#autoForm collection="Clients" id="insertClientForm" type="insert"}}
+    <fieldset>
+      <div class="col-md-12">{{> afQuickField name='company'}}</div>
+      <div class="col-md-6">{{> afQuickField name='firstName'}}</div>
+      <div class="col-md-6">{{> afQuickField name='lastName'}}</div>
+      <div class="col-md-6">{{> afQuickField name='address'}}</div>
+      <div class="col-md-6">{{> afQuickField name='city'}}</div>
+      <div class="col-md-6">{{> afQuickField name='phonenumber'}}</div>
+      <div class="col-md-4">{{> afQuickField name='country' noselect=true}}</div>
+      <div class="col-md-4">{{> afQuickField name='province' noselect=false}}</div>
+      <div class="col-md-4">{{> afQuickField name='zipCode'}}</div>
+    </fieldset>
+    <div class="col-md-12"><button type="submit" class="btn btn-primary">Insert</button></div>
+      {{/autoForm}}
+    
+  <ul>
+    {{#each clients}} 
+      <li><a href="{{pathFor 'client.show'}}">{{company}}</a> - {{firstName}} {{lastName}} - {{#afModal class="btn btn-sm btn-primary" collection="Clients" operation="update" doc=_id}}
+  Update Client{{/afModal}} - {{#afModal class="btn btn-sm btn-danger" collection="Clients" operation="remove" prompt="Are you sure?" doc=_id}}
+  Delete Client
+{{/afModal}} - {{createdAt}}</li>
+    {{/each}}
+  </ul>
+  {{> autoformModals}}
+</template>

@@ -1,0 +1,8 @@
+<!-- client/post.html -->
+
+<template name="client">
+{{> loginButtons}}
+  <h1>Edit Client</h1> 
+  {{> quickForm collection="Clients" id="updateClientForm" type="update" doc=this}}
+  <a class="btn" href="/">Back</a>
+</template>
